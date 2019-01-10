@@ -83,12 +83,43 @@ for key in d_useapp:
     listapp.append((d_useapp[key]*100)/total_useapp)
 
 # Pie chart, education
-labels = d_useapp
-sizes = listapp
-explode = (0, 0.05, 0.1, 0.15, 0.2)  # only "explode" the 2nd slice (i.e. 'Hogs')
+# labels = d_useapp
+# sizes = listapp
+# explode = (0, 0.05, 0.1, 0.15, 0.2)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
-fig1, ax1 = plt.subplots()
-ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-        shadow=True, startangle=90)
-ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+# fig1, ax1 = plt.subplots()
+# ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+#         shadow=True, startangle=90)
+# ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+# plt.show()
+
+d_age = dict()
+for key in all_data['Q48']:
+    if key in d_age:
+        d_age[key] += 1
+    else:
+        d_age[key] = 1
+
+sorted_age = sorted(d_age)
+
+# objects = sorted_age
+# y_pos = np.arange(len(sorted_age))
+# performance = max(d_age.values())
+ 
+# plt.bar(y_pos, performance, align='center', alpha=0.5)
+# plt.xticks(y_pos, sorted_age)
+# plt.ylabel('Number of participants')
+# plt.title('Age of participant')
+
+objects = sorted_age
+y_pos = np.arange(len(objects))
+performance = max(d_age.values())
+ 
+plt.barh(y_pos, performance, align='center', alpha=0.5)
+plt.yticks(y_pos, objects)
+plt.xlabel('Age')
+plt.title('Participants age')
+ 
+plt.show()
+ 
 plt.show()
