@@ -15,5 +15,4 @@ data = data.drop(data.index[nan])
 
 # drop _alt columns
 alt_columns = [column for column in data.columns.values if column[-3:] == 'alt']
-
 data = data.drop(alt_columns, axis=1)
