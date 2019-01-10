@@ -9,3 +9,4 @@ data = data.replace(" ", np.nan)
 nan = [index for index, row in data.iterrows() if row.isnull().sum() > 70]
 
 data = data.drop(data.index[nan])
+#data.to_csv('cleaned_data.csv')
