@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn.cluster import KMeans
 
 # verwijder users die groot deel van de data niet hebben ingevuld
 data = pd.read_csv("relevantQs.csv", delimiter=',')
