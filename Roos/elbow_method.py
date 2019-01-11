@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 # find optimal value of k for k-means
 data = pd.read_csv("../Data/one_hot_data.csv", delimiter=',')
+data = data.drop(['Q47_Man', 'Q47_Vrouw', 'Q48', 'Q49', 'Q50'], axis=1)
 
 X = data.values
 
