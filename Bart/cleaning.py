@@ -10,14 +10,14 @@ def load_data(filename, delim):
 def filter_unusable(data):
 	data = data.loc[data["Q1"] == "Ja"]
 	data = data.loc[data["Q4"] != "Nee"]
-	cols_to_drop = list(data.columns[:9]) + list(data.columns[40:159]) + list(data.columns[-2:]) + [x for x in data.columns if re.match(r'Q\d\d[A-Z]{0,1}[_]', x)]
+	cols_to_drop = list(data.columns[:9]) + list(data.columns[40:159]) + list(data.columns[-3:]) + [x for x in data.columns if re.match(r'Q\d\d[A-Z]{0,1}[_]', x)]
 	return data.drop(cols_to_drop, axis=1)
 
 # filters all subject who didnt fill in the Qs
 def filter_more(data):
 	data = data.reset_index(drop=True)
 	data = data.replace(" ", np.nan)
-	nan = [index for index, row in data.iterrows() if row.isnull().sum() == 62]
+	nan = [index for index, row in data.iterrows() if row.isnull().sum() == 61]
 	data = data.drop(data.index[nan])
 	return data
 
