@@ -8,12 +8,14 @@ import matplotlib.pyplot as plt
 
 # find optimal value of k for k-means
 data = pd.read_csv("../Data/final_data.csv", delimiter=',')
-#data = data.drop(['Q47_Man', 'Q47_Vrouw', 'Q48', 'Q49', 'Q50'], axis=1)
-
+cols = data.columns[:57]
+data = data[cols]
+drop = [i for i in range(35,47)]
+data = data.drop(data.columns[drop], axis=1)
 X = data.values
 
 Sum_of_squared_distances = []
-K = range(1,15)
+K = range(1,30)
 for k in K:
     km = KMeans(n_clusters=k)
     km = km.fit(X)
