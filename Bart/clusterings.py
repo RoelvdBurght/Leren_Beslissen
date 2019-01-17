@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import sys
 from sklearn import cluster as sc
 from kmodes.kmodes import KModes
 import matplotlib.pyplot as plt
@@ -62,12 +63,13 @@ def plot(data, n):
 
 
 if __name__ == '__main__':
-    n = 4
+    clust_alg = sys.argv[1]
+    n = int(sys.argv[2])
     data = load_csv('../Data/final_data.csv', ',')
     # print(len(data))
     indices = [i for i in range(57,167)] + [i for i in range(35,47)] #+ [i for i in range(140,167)]
     indices.sort()
     data = drop_columns(data, indices)
-    data = cluster(data, 'spect', n)
+    data = cluster(data, clust_alg, n)
     plot(data, n)
     # [1040  373  732]
