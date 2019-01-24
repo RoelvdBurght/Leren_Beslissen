@@ -35,7 +35,7 @@ def plot(data, n):
         d['label' + str(i)] = data.loc[data.label == i].astype(float)
         d['sums' + str(i)]  = d['label'+str(i)].sum()
         for j in range(len(d['sums'+str(i)])):
-            if d['sums'+str(i)][j]/len(d['label' + str(i)]) > .5 and j not in indices:
+            if d['sums'+str(i)][j]/len(d['label' + str(i)]) > .1 and j not in indices:
                 indices.append(j)
 
     indices.sort()
