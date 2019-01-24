@@ -18,10 +18,10 @@ def cluster(data, clust, n):
         clustering = sc.KMeans(n_clusters=n).fit(X)
         labels = clustering.labels_
     if clust == 'spect':
-        clustering = sc.SpectralClustering(n_clusters=n, assign_labels="discretize", verbose=1,random_state=0).fit(X)
+        clustering = sc.SpectralClustering(n_clusters=n, assign_labels="discretize", random_state=0).fit(X)
         labels = clustering.labels_
     if clust == 'kmodes':
-        labels = KModes(n_clusters=n, init='Huang', n_init=20, verbose=1).fit_predict(X)
+        labels = KModes(n_clusters=n, init='Huang', n_init=10, verbose=1).fit_predict(X)
 
     data['label'] = labels
     #print(np.bincount(labels))
@@ -60,16 +60,12 @@ def plot(data, n):
     plot = df.plot(kind='bar',figsize=(10,3))
     plt.show()
 
-
-
 if __name__ == '__main__':
     clust_alg = sys.argv[1]
     n = int(sys.argv[2])
     data = load_csv('../Data/final_data.csv', ',')
-    # print(len(data))
-    indices = [i for i in range(57,167)] + [i for i in range(35,47)] #+ [i for i in range(140,167)]
+    indices = [i for i in range(57,167)] + [i for i in range(35,47)]
     indices.sort()
     data = drop_columns(data, indices)
     data = cluster(data, clust_alg, n)
     plot(data, n)
-    # [1040  373  732]
