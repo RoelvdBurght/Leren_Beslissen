@@ -24,7 +24,7 @@ def cluster(data, clust, n):
         labels = KModes(n_clusters=n, init='Huang', n_init=20, verbose=1).fit_predict(X)
 
     data['label'] = labels
-    print(np.bincount(labels))
+    #print(np.bincount(labels))
     return data
 
 def plot(data, n):
@@ -44,14 +44,14 @@ def plot(data, n):
         sums = d['sums'+str(i)]
         df = d['label'+str(i)]
         y.append(sums[df.columns[indices]])
-        print(len(df))
+        #print(len(df))
 
     y = np.array(y)
     for i in range(len(y)):
         y[i] = y[i]/len(d['label'+str(i)])
 
     y = y.T
-    print(y)
+    #print(y)
 
     # y[0] = y[0] / len()
     x = data.columns[indices]
