@@ -30,14 +30,14 @@ if __name__ == '__main__':
     dot_data = StringIO()
 
     clf_gini = tree.DecisionTreeClassifier(criterion = "gini", random_state = 100,
-                               max_depth=6, min_samples_leaf=5)
+                               max_depth=4, min_samples_leaf=4, min_impurity_decrease=0.01)
     clf_fit = clf_gini.fit(X_train, Y_train)
     print(sum(clf_gini.predict(X_val) == Y_val)/len(Y_val))
     tree.export_graphviz(clf_fit, out_file=dot_data,
                 filled=True, rounded=True,
                 special_characters=True)
     graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
-    graph.write_png('tree.png')
+    graph.write_png('tree3.png')
 
 
 #     n_nodes = estimator.tree_.node_count
